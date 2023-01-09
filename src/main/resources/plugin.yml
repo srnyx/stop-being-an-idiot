@@ -1,0 +1,27 @@
+name: ${name}
+description: A fun little game... when one person dies, everyone dies
+authors:
+  - srnyx
+website: https://srnyx.xyz
+
+main: xyz.srnyx.stopbeinganidiot.StopBeingAnIdiot
+version: ${version}
+
+commands:
+  stopbeinganidiot:
+    description: Command for toggling StopBeingAnIdiot
+    aliases:
+      - sbai
+      - stopbeingidiot
+    permission: sbai.command
+
+permissions:
+  # Command permissions
+  sbai.command:
+    description: Allows the player to use /stopbeinganidiot
+  # Other permissions
+  sbai.trigger:
+    description: If a player with this permission dies, everyone else dies
+    default: true
+  sbai.bypass:
+    description: Player won't die when everyone else dies
