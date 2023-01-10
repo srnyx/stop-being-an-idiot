@@ -9,7 +9,7 @@ Great plugin for content creation (YouTube, TikTok, Twitch, etc...) or just for 
 
 ## Download
 
-- **✅ Stable:** You can download the latest **stable** version at [Modrinth](https://modrinth.com/plugin/sbai), [Polymart](https://polymart.org/resource/####), [Spigot](https://spigotmc.org/resources/######), or [Bukkit](https://dev.bukkit.org/projects/sbai)
+- **✅ Stable:** You can download the latest **stable** version at [Modrinth](https://modrinth.com/plugin/sbai), [Polymart](https://polymart.org/resource/3330), [Spigot](https://spigotmc.org/resources/107313), or [Bukkit](https://dev.bukkit.org/projects/sbai)
 - **🚧 Snapshot:** You can download the latest **snapshot** version at [actions/workflows/build.yml](https://github.com/srnyx/stop-being-an-idiot/actions/workflows/build.yml)
 
 # Wiki
