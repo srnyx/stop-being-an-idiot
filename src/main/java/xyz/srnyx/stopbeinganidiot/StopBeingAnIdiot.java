@@ -23,7 +23,7 @@ public class StopBeingAnIdiot extends AnnoyingPlugin {
 
     @Override
     public void reload() {
-        data = new AnnoyingData(this, "data.yml");
+        data = new AnnoyingData(this, "data.yml", false);
         enabled = data.getBoolean("enabled");
     }
 
