@@ -57,6 +57,6 @@ public class SbaiCommand implements AnnoyingCommand {
 
     @Override @NotNull
     public Collection<String> onTabComplete(@NotNull AnnoyingSender sender) {
-        return Arrays.asList("on", "off", "reload");
+        return Arrays.asList("reload", plugin.enabled ? "off" : "on");
     }
 }
