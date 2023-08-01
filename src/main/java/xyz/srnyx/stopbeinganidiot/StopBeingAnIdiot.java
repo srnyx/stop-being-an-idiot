@@ -2,10 +2,13 @@ package xyz.srnyx.stopbeinganidiot;
 
 import org.jetbrains.annotations.NotNull;
 
-import xyz.srnyx.annoyingapi.AnnoyingMessage;
 import xyz.srnyx.annoyingapi.AnnoyingPlugin;
+import xyz.srnyx.annoyingapi.PluginPlatform;
 import xyz.srnyx.annoyingapi.command.AnnoyingSender;
 import xyz.srnyx.annoyingapi.file.AnnoyingData;
+import xyz.srnyx.annoyingapi.file.AnnoyingFile;
+import xyz.srnyx.annoyingapi.message.AnnoyingMessage;
+import xyz.srnyx.annoyingapi.message.DefaultReplaceType;
 
 
 public class StopBeingAnIdiot extends AnnoyingPlugin {
@@ -13,25 +16,32 @@ public class StopBeingAnIdiot extends AnnoyingPlugin {
     public boolean enabled = false;
 
     public StopBeingAnIdiot() {
-        super();
-        reload();
+        options
+                .pluginOptions(pluginOptions -> pluginOptions.updatePlatforms(
+                        PluginPlatform.modrinth("sbai"),
+                        PluginPlatform.hangar(this, "srnyx"),
+                        PluginPlatform.spigot("107313")))
+                .bStatsOptions(bStatsOptions -> bStatsOptions.id(18858))
+                .registrationOptions
+                .automaticRegistration(automaticRegistration -> automaticRegistration.packages(
+                        "xyz.srnyx.stopbeinganidiot.commands",
+                        "xyz.srnyx.stopbeinganidiot.listeners"))
+                .papiExpansionToRegister(() -> new SbaiPlaceholders(this));
 
-        // Options
-        options.commands.add(new SbaiCommand(this));
-        options.listeners.add(new DeathListener(this));
+        reload();
     }
 
     @Override
     public void reload() {
-        data = new AnnoyingData(this, "data.yml", false);
+        data = new AnnoyingData(this, "data.yml", new AnnoyingFile.Options<>().canBeEmpty(false));
         enabled = data.getBoolean("enabled");
     }
 
     public void toggle(boolean status, @NotNull AnnoyingSender sender) {
         enabled = status;
-        data.set("enabled", status, true);
+        data.setSave("enabled", status);
         new AnnoyingMessage(this, "command.toggle")
-                .replace("%status%", status, AnnoyingMessage.DefaultReplaceType.BOOLEAN)
+                .replace("%status%", status, DefaultReplaceType.BOOLEAN)
                 .send(sender);
     }
 }

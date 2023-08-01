@@ -1,4 +1,4 @@
-package xyz.srnyx.stopbeinganidiot;
+package xyz.srnyx.stopbeinganidiot.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -6,24 +6,25 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import xyz.srnyx.annoyingapi.AnnoyingListener;
-import xyz.srnyx.annoyingapi.AnnoyingMessage;
+import xyz.srnyx.annoyingapi.message.AnnoyingMessage;
+import xyz.srnyx.annoyingapi.message.BroadcastType;
+
+import xyz.srnyx.stopbeinganidiot.StopBeingAnIdiot;
 
 
 public class DeathListener implements AnnoyingListener {
     @NotNull private final StopBeingAnIdiot plugin;
     private boolean justDied = false;
 
-    @Contract(pure = true)
     public DeathListener(@NotNull StopBeingAnIdiot plugin) {
         this.plugin = plugin;
     }
 
     @Override @NotNull
-    public StopBeingAnIdiot getPlugin() {
+    public StopBeingAnIdiot getAnnoyingPlugin() {
         return plugin;
     }
 
@@ -48,9 +49,9 @@ public class DeathListener implements AnnoyingListener {
         // Send message
         new AnnoyingMessage(plugin, "death.message")
                 .replace("%player%", player.getName())
-                .broadcast(AnnoyingMessage.BroadcastType.CHAT);
+                .broadcast(BroadcastType.CHAT);
         new AnnoyingMessage(plugin, "death.title")
                 .replace("%player%", player.getName())
-                .broadcast(AnnoyingMessage.BroadcastType.FULL_TITLE);
+                .broadcast(BroadcastType.FULL_TITLE);
     }
 }
