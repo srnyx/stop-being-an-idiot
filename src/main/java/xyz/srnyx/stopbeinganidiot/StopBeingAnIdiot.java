@@ -21,7 +21,7 @@ public class StopBeingAnIdiot extends AnnoyingPlugin {
                         PluginPlatform.modrinth("sbai"),
                         PluginPlatform.hangar(this, "srnyx"),
                         PluginPlatform.spigot("107313")))
-                .bStatsOptions(bStatsOptions -> bStatsOptions.id(18858))
+                .bStatsOptions(bStatsOptions -> bStatsOptions.id(19588))
                 .registrationOptions
                 .automaticRegistration(automaticRegistration -> automaticRegistration.packages(
                         "xyz.srnyx.stopbeinganidiot.commands",
