@@ -38,11 +38,11 @@ error:
   disabled-command: "%prefix%%se%%command%%pe% is disabled!@@%pe%%command%@@%command%"
 
 death: # %player%
-  message: "%prefix%%s%%player%%p% just made everyone die!"
+  message: "\n&c&l! &4%player%&c just made everyone die &c&l!\n"
   title:
-    title: "%s%%player%"
-    subtitle: "%p%just died!"
+    title: "&4%player%"
+    subtitle: "&cjust died!"
 
 command:
   reload: "%prefix%Plugin reloaded@@%p%%command%@@%command%"
-  toggle: "%prefix%You have %s%%status==enabled//disabled%%p% Stop Being An Idiot@@%p%%command%@@%command%" # %status==boolean%
+  toggle: "%prefix%You have %s%%status==enabled//disabled%%p% Stop Being An Idiot!@@%p%%command%@@%command%" # %status==boolean%

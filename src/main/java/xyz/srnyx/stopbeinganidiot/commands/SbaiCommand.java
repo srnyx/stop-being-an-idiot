@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class SbaiCommand implements AnnoyingCommand {
+public class SbaiCommand extends AnnoyingCommand {
     @NotNull private final StopBeingAnIdiot plugin;
 
     public SbaiCommand(@NotNull StopBeingAnIdiot plugin) {
@@ -31,9 +31,9 @@ public class SbaiCommand implements AnnoyingCommand {
 
     @Override
     public void onCommand(@NotNull AnnoyingSender sender) {
-        // No arguments
+        // No arguments (toggle)
         if (sender.args.length == 0) {
-            plugin.toggle(!plugin.enabled, sender);
+            plugin.toggle(!plugin.data.has(StopBeingAnIdiot.COL_ENABLED), sender);
             return;
         }
 
@@ -50,6 +50,6 @@ public class SbaiCommand implements AnnoyingCommand {
 
     @Override @NotNull
     public List<String> onTabComplete(@NotNull AnnoyingSender sender) {
-        return Arrays.asList("reload", plugin.enabled ? "off" : "on");
+        return Arrays.asList("reload", plugin.data.has(StopBeingAnIdiot.COL_ENABLED) ? "off" : "on");
     }
 }

@@ -10,7 +10,7 @@ plugins {
     id("com.gradleup.shadow") version "8.3.5"
 }
 
-setupAnnoyingAPI("4.1.0", "xyz.srnyx", "2.0.0", "A fun little game... when one person dies, everyone dies")
+setupAnnoyingAPI("5.1.4", "xyz.srnyx", "2.0.1", "A fun little game... when one person dies, everyone dies")
 spigotAPI("1.8.8")
 
 repository(Repository.PLACEHOLDER_API)

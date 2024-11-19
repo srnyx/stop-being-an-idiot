@@ -27,6 +27,6 @@ public class SbaiPlaceholders extends AnnoyingPAPIExpansion {
 
     @Override @Nullable
     public String onPlaceholderRequest(@Nullable Player player, @NotNull String identifier) {
-        return identifier.equals("status") ? String.valueOf(plugin.enabled) : null;
+        return identifier.equals("status") ? String.valueOf(plugin.data.has(StopBeingAnIdiot.COL_ENABLED)) : null;
     }
 }

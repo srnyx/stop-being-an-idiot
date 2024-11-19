@@ -15,7 +15,7 @@ import xyz.srnyx.annoyingapi.message.BroadcastType;
 import xyz.srnyx.stopbeinganidiot.StopBeingAnIdiot;
 
 
-public class DeathListener implements AnnoyingListener {
+public class DeathListener extends AnnoyingListener {
     @NotNull private final StopBeingAnIdiot plugin;
     private boolean justDied = false;
 
@@ -33,17 +33,17 @@ public class DeathListener implements AnnoyingListener {
      */
     @EventHandler
     public void onPlayerDeath(@NotNull PlayerDeathEvent event) {
+        if (!plugin.data.has(StopBeingAnIdiot.COL_ENABLED) || justDied) return;
         final Player player = event.getEntity();
-        if (!plugin.enabled || justDied || !player.hasPermission("sbai.trigger")) return;
+        if (!player.hasPermission("sbai.trigger")) return;
 
         // Kill all other players that don't have the bypass permission
         justDied = true;
-        Bukkit.getOnlinePlayers().stream()
-                .filter(online -> {
-                    final GameMode gameMode = online.getGameMode();
-                    return !online.equals(player) && !gameMode.equals(GameMode.CREATIVE) && !gameMode.equals(GameMode.SPECTATOR) && !online.hasPermission("sbai.bypass");
-                })
-                .forEach(online -> online.setHealth(0));
+        for (final Player online : Bukkit.getOnlinePlayers()) {
+            if (online.equals(player)) continue;
+            final GameMode gameMode = online.getGameMode();
+            if (!gameMode.equals(GameMode.CREATIVE) && !gameMode.equals(GameMode.SPECTATOR) && !online.hasPermission("sbai.bypass")) online.setHealth(0);
+        }
         justDied = false;
 
         // Send message
